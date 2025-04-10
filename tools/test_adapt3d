@@ -1,0 +1,59 @@
+#!/bin/bash
+# FILENAME: train-waymo-8x2
+
+
+# Manage processing environment
+module --force purge
+module load gcc/6.3.0
+module load cuda/11.2.0
+module load cudnn/cuda-11.2_8.1
+module load anaconda/2020.11-py38
+module use /depot/schaterj/data/3d/modules
+module load conda-env/openpcdet_new-py3.8.5
+
+# test
+#python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_voxel0050.yaml --batch_size 8 --ckpt ../output/waymo_models/centerpoint_dyn_voxel0050/default/ckpt/checkpoint_epoch_15.pth --eval_all
+
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar024_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar024_4x.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar028_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar028_4x.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar032_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar032_4x.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar036_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar036_4x.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar040_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar040_4x.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar044_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar044_4x.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar048_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar048_4x.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_dyn_pillar052_4x.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_dyn_pillar052_4x.pth
+
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel100.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel100.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel150.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel150.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel200.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel200.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel250.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel250.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel300.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel300.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel350.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel350.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel400.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel400.pth
+python test.py --cfg_file cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel450.yaml --batch_size 16 --ckpt ../output/waymo_checkpoints/centerpoint_without_resnet_dyn_voxel450.pth
+
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar020.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar020.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar030.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar030.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar040.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar040.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar050.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar050.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar060.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar060.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar070.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar070.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar080.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar080.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar090.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar090.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar100.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar100.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar110.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar110.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar120.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar120.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_pillar130.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_pillar130.pth
+
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel020.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel020.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel030.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel030.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel040.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel040.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel050.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel050.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel060.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel060.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel070.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel070.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel080.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel080.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel090.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel090.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel100.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel100.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel110.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel110.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel120.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel120.pth
+python test.py --cfg_file cfgs/waymo_models/dsvt_sampled_voxel130.yaml --batch_size 1 --ckpt ../output/waymo_checkpoints/dsvt_sampled_voxel130.pth

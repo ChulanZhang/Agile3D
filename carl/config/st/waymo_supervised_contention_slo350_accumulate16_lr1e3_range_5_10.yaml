@@ -1,0 +1,116 @@
+# This is a very first version of the model trained with contention level:
+# 1. train with the GD MAE feature
+# 2. train with the 55 branches
+# 3. the scheduler takes the 3d feature, the latency slo, the contention level, the detection result to predict and action
+# 3. training target use: we use the latency slo to filter the branch which is overshot the slo, and select the hight acc branch in the remaininig branches as target
+# 4. train the interval scheduling
+
+model_name: SSM_contention
+
+model:
+  # backbone config
+  backbone_name: identity
+  input_size: [150, 150]
+  planes: 4
+  out_dim: 128
+  num_classes: 55
+  # ssm config
+  rms_norm: true
+  fused_add_norm: true
+  residual_in_fp32: true
+  # contention config
+  use_contention: true
+  learnable_contention_token: true
+  contention_token_type: pe
+  contention_levels: [0.0, 0.2, 0.5, 0.9]
+  contention_embed_dim: 128
+  
+  use_mlp: true
+  use_det_info: true
+  det_info_fuse_method: early
+  use_det_query: True
+  det_res_dim: 9
+
+train:
+  data:
+    name: waymoWindow_contention_train
+    root: /home/wang4495/depot-sc/data/3d_datasets/3d_data # meaningless hyper
+    split: val
+    # the feature
+    use_gd_mae_feat: true
+    gd_feat_path: /depot/schaterj/data/3d/work_dir/GD-MAE/output/mae_feature/val
+    size: [468, 468]
+    # interval scheule config
+    max_scheduler_call: 10
+    min_scheduler_call: 5
+    scheduler_call_interval: 10
+    # load the acc and the latency
+    load_acc: true
+    acc_path: /depot/schaterj/data/3d/waymo_results/waymo_new_profiling/per_frame_l2_acc_val_55b.npy
+    load_latency: true
+    latency_path: [/depot/schaterj/data/3d/waymo_results/waymo_new_profiling/latency_val_55b_c00.npy,
+                   /depot/schaterj/data/3d/waymo_results/waymo_new_profiling/latency_val_55b_c20.npy,
+                   /depot/schaterj/data/3d/waymo_results/waymo_new_profiling/latency_val_55b_c50.npy,
+                   /depot/schaterj/data/3d/waymo_results/waymo_new_profiling/latency_val_55b_c90.npy]
+    load_loss: False
+    # rewards
+    reward_type: acc
+    rescale_reward: false
+    soft_adjust: false    
+    # latency value
+    return_latency_value: True
+    latency_adjusted_reward: false
+    # latency threshold
+    return_latency_thresh: True
+    latency_threshold_type: fixed
+    latency_per_wind: True
+    latency_threshold: 350
+    # contension level
+    contention_level: [0.0, 0.2, 0.5, 0.9]
+    use_contention_level: True
+    # return index for calculating map
+    return_idx: True
+
+  use_det_res: True # use detection result
+  branch_filter_type: contention55
+  interval_schedule: True 
+  use_latency_thresh: true
+  use_contention_level: true
+  batch_size: 1
+  num_workers: 4
+  accumulate_grad_step: 16
+
+  # optimizer config
+  num_epoches: 10
+  gamma: 0.99  
+  optimizer:
+    name: adamw
+    lr: 1.e-3
+    ppo_step: 2
+
+eval:
+  use_new_branches: True
+  branch_filter_type: contention55
+  profiling_root: /depot/schaterj/data/3d/waymo_results/waymo_new_profiling/det/test
+  data:
+    name: waymoWindow_rl_eval
+    #root: /data3/3d_vision/waymo_profiling
+    root: /home/wang4495/depot-sc/data/3d_datasets/3d_data # meaningless hyper
+    #root: /backup/zhuoming/3d_data
+    split: test
+    # feature
+    use_gd_mae_feat: true
+    gd_feat_path: /depot/schaterj/data/3d/work_dir/GD-MAE/output/mae_feature/test
+    
+    size: [468, 468]
+    # use_occ: true
+    # use_intensity: false
+    # use_elongation: false
+    # #wind_size: 10
+    # load_downsampled: True
+
+    load_acc: False
+    #acc_path: /anvil/projects/x-cis230283/datasets/waymo_new_profiling/acc_test.npy
+    load_latency: True
+    latency_path: /depot/schaterj/data/3d/waymo_results/waymo_new_profiling/latency_test_55b_c00.npy # this need to be fixed
+    load_loss: False
