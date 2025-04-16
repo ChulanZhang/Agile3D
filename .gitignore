@@ -11,6 +11,7 @@ venv/
 *.out
 # *.sh
 *.pth
+*.pt
 *.pkl
 *.zip
 *.bin
