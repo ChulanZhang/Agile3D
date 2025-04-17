@@ -45,35 +45,24 @@ conda activate agile3d
 ```
 Otherwise, check our [Installation Guide](docs/INSTALL.md).
 
-### 2.2. Code, Models, Datasets, and Profiling results
-If you use the board that we provide, the code, models, and datasets are already placed in the following file tree,
-```
-#source code directory
-/home/agile3d/agile3d
-# all the trained models
-/home/agile3d/agile3d/checkpoints
-# the path to the Waymo dataset
-/home/agile3d/agile3d/data/waymo
-# the path to the profiling results
-/home/agile3d/agile3d/output
-```
 
 ## 3. Run the Experiments and Evaluations
 ### 3.1. Experiment (E1)
 [Key accuracy and latency performance of AGILE3D ] [40 human-minutes + 4 compute-hours]: we will run AGILE3D on the NVIDIA Jetson Orin board and examine the key accuracy and latency performance of it. Expected accuracy and latency on Orin are [71.72%, 374 ms], [70.98%, 430 ms], [70.03%, 450 ms], and [68.72%, 470 ms] under four different contention levels. Run the following commands on Orin and GPU server:
 ```
-# On Orin
+# On Orin (not necessary as we already put a copy of results on the server)
 $ conda activate agile3d
 (agile3d) $ cd ~/agile3d
 (agile3d) $ bash experiment_1.sh
 # Sync the results to the GPU server
 (agile3d) $ bash results_sync.sh
+
 # On GPU Server
-$ . activate_agile3d_env.sh
+$ conda activate agile3d
 (agile3d) $ cd ~/agile3d
 (agile3d) $ bash eval_experiment_1.sh
 ```
-The results will be written to agile3d/output/e1_results. We have saved a copy of these files in “offline logs AE/”, and use “python offline eval exp1.py” to compute the accuracy and latency from these results files. One may replace the filenames by those in the online execution
+The evaluation script will print the latency and accuracy results.
 
 ### 3.2. Experiment (E2)
 [The low switching overhead of AGILE3D ] [20 human-minutes + 6 compute-hours]: we will run all branches in AGILE3D on Orin, switching from one branch to another, and examine the switching overhead (latency increase in the first frame after swicth). The expected mean switching overhead is under 2 ms.
@@ -84,24 +73,25 @@ $ conda activate agile3d
 (agile3d) $ cd ~/agile3d
 (agile3d) $ bash experiment_2.sh
 ```
-The results will be written to agile3d/output/e2_results.
+The evaluation script will print the switching overhead results.
 
 
 ## 3.3. Experiment (E3)
 [The accuracy and latency improvement of AGILE3D over variants of static SOTA models] [60 human-minutes + 10 compute-hours]: we will run AGILE3D on Orin and examine the latency performance of it. Expected mean latency of AGILE3D is from 50 to 350 ms. Those of PV-RCNN, DSVT-Voxel, and DSVTPillar are 850 ms, 460 ms, and 350 ms. So AGILE3D achieves both faster speed and higher accuracy than static SOTA baselines. Run the following commands on Orin and GPU server:
 ```
-# On Orin
+# On Orin (not necessary as we already put a copy of results on the server)
 $ conda activate agile3d
 (agile3d) $ cd ~/agile3d
 (agile3d) $ bash experiment_3.sh
 # Sync the results to the GPU server
 (agile3d) $ bash results_sync.sh
+
 # On GPU Server
 $ . activate_agile3d_env.sh
 (agile3d) $ cd ~/agile3d
 (agile3d) $ bash eval_experiment_3.sh
 ```
-The results will be written to agile3d/output/e3_results.
+The evaluation script will print the switching overhead results.
 
 ## License
 
