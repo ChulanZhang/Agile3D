@@ -5,12 +5,9 @@ from .pointpillar import PointPillar
 from .pv_rcnn import PVRCNN
 from .second_net import SECONDNet
 from .second_net_iou import SECONDNetIoU
-from .caddn import CaDDN
 from .voxel_rcnn import VoxelRCNN
 from .centerpoint import CenterPoint
 from .pv_rcnn_plusplus import PVRCNNPlusPlus
-from .mppnet import MPPNet
-from .mppnet_e2e import MPPNetE2E
 from .pillarnet import PillarNet
 from .voxelnext import VoxelNeXt
 from .transfusion import TransFusion
@@ -24,13 +21,10 @@ __all__ = {
     'PointPillar': PointPillar,
     'PointRCNN': PointRCNN,
     'SECONDNetIoU': SECONDNetIoU,
-    'CaDDN': CaDDN,
     'VoxelRCNN': VoxelRCNN,
     'CenterPoint': CenterPoint,
     'PillarNet': PillarNet,
     'PVRCNNPlusPlus': PVRCNNPlusPlus,
-    'MPPNet': MPPNet,
-    'MPPNetE2E': MPPNetE2E,
     'PillarNet': PillarNet,
     'VoxelNeXt': VoxelNeXt,
     'TransFusion': TransFusion,
