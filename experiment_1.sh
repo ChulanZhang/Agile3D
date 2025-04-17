@@ -3,6 +3,7 @@
 export TF_CPP_MIN_LOG_LEVEL=2
 export PYTHONWARNINGS="ignore::FutureWarning"
 
+# Not necessary to run this script, the results are saved on the evaluation server
 cd carl
 
 python eval.py --name waymo_dpo_contention_slo500_accumulate16_range_5_10_spare --ckpt 9 \
