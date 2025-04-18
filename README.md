@@ -77,7 +77,9 @@ bash experiment_1.sh
 # Evaluate experiment_1 results
 bash eval_experiment_1.sh
 
-# For fast evaluation (recommended starting point)
+# ### Recommended starting point ###
+# The above experiments will take a long time, we have already put all the results on the server
+# For fast evaluation
 bash eval_experiment_1_short.sh
 ```
 
@@ -137,7 +139,9 @@ cd /home/data/agile3d
 # Evaluate experiment_3 results
 bash eval_experiment_3.sh
 
-# For fast evaluation (recommended starting point)
+# ### Recommended starting point ###
+# The above experiments will take a long time, we have already put all the results on the server
+# For fast evaluation
 bash eval_experiment_3_short.sh
 ```
 
