@@ -27,14 +27,16 @@ On Windows:
 ### 1.3. Access the embedded GPU for running experiment and the desktop GPU for evaluation
 Then you can use ssh to access our embedded GPU for running experiment and desktop GPU for evaluation.
 ```
-# ssh into the embedded GPU
+# ssh into the Orin embedded GPU
 ssh -i mobisys2025.pem agile3d@172.30.53.226
 # ssh into the desktop GPU
 ssh -i mobisys2025.pem agile3d@172.30.166.233
-# list the tmux sessions
-tmux ls 
-# we already have the docker environment running in the tmux session on both the embedded and desktop GPUs
-tmux a -t mobisys2025
+
+# we already have the docker environment running on both the embedded and desktop GPUs
+# On the Orin embedded GPU
+docker exec -it d94aaeae45f7 /bin/bash
+# On the desktop GPU
+docker exec -it mobisys2025 /bin/bash
 ```
 
 ## 2. Run the Experiments and Evaluations
@@ -50,14 +52,24 @@ Otherwise, check our [Installation Guide](docs/INSTALL.md).
 ### 3.1. Experiment (E1)
 [Key accuracy and latency performance of AGILE3D ] [40 human-minutes + 4 compute-hours]: we will run AGILE3D on the NVIDIA Jetson Orin board and examine the key accuracy and latency performance of it. Expected accuracy and latency on Orin are [71.72%, 374 ms], [70.98%, 430 ms], [70.03%, 450 ms], and [68.72%, 470 ms] under four different contention levels. Run the following commands on Orin and GPU server:
 ```
-# On Orin 
 # This part not necessary as we already put a copy of results on the server
+# Ssh into Orin
+$ ssh -i mobisys2025.pem agile3d@172.30.53.226
+# Get into the docker env
+$ docker exec -it d94aaeae45f7 /bin/bash
+# On Orin 
 $ conda activate agile3d
 (agile3d) $ cd /home/data/agile3d
 (agile3d) $ bash experiment_1.sh
 # Sync the results to the GPU server
 (agile3d) $ bash results_sync.sh
 
+
+# Then log into the desktop GPU for evaluation. (Recommend start from here)
+# Ssh into the desktop GPU
+$ ssh -i mobisys2025.pem agile3d@172.30.166.233
+# Get into the docker env
+$ docker exec -it mobisys2025 /bin/bash
 # On GPU Server
 # The waymo evaluation probably takes a long time. We provide a copy of results on the server.
 # You can comment the waymo evaluation in the bash script and only print the results.
@@ -71,6 +83,10 @@ The evaluation script will print the latency and accuracy results.
 [The low switching overhead of AGILE3D ] [20 human-minutes + 6 compute-hours]: we will run all branches in AGILE3D on Orin, switching from one branch to another, and examine the switching overhead (latency increase in the first frame after swicth). The expected mean switching overhead is under 2 ms.
 On Orin, run the following command:
 ```
+# Ssh into Orin
+$ ssh -i mobisys2025.pem agile3d@172.30.53.226
+# Get into the docker env
+$ docker exec -it d94aaeae45f7 /bin/bash
 # On Orin
 # The switching overhead will be printed out during the experiment
 $ conda activate agile3d
@@ -83,6 +99,10 @@ The evaluation script will print the switching overhead results.
 ## 3.3. Experiment (E3)
 [The accuracy and latency improvement of AGILE3D over variants of static SOTA models] [60 human-minutes + 10 compute-hours]: we will run AGILE3D on Orin and examine the latency performance of it. Expected mean latency of AGILE3D is from 100 to 350 ms. Those of PV-RCNN, DSVT-Voxel, and DSVTPillar are 850 ms, 460 ms, and 350 ms. So AGILE3D achieves both faster speed and higher accuracy than static SOTA baselines. Run the following commands on Orin and GPU server:
 ```
+# Ssh into Orin
+$ ssh -i mobisys2025.pem agile3d@172.30.53.226
+# Get into the docker env
+$ docker exec -it d94aaeae45f7 /bin/bash
 # On Orin
 # This part is not necessary as we already put a copy of results on the server
 $ conda activate agile3d
@@ -91,6 +111,11 @@ $ conda activate agile3d
 # Sync the results to the GPU server
 (agile3d) $ bash results_sync.sh
 
+# Then log into the desktop GPU for evaluation. (Recommend start from here)
+# Ssh into the desktop GPU
+$ ssh -i mobisys2025.pem agile3d@172.30.166.233
+# Get into the docker env
+$ docker exec -it mobisys2025 /bin/bash
 # On GPU Server
 $ . activate_agile3d_env.sh
 (agile3d) $ cd /home/data/agile3d
