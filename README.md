@@ -33,9 +33,6 @@ ssh -i mobisys2025.pem agile3d@172.30.53.226
 ssh -i mobisys2025.pem agile3d@172.30.166.233
 
 # we already have the docker environment running on both the embedded and desktop GPUs
-# On the Orin embedded GPU
-docker exec -it d94aaeae45f7 /bin/bash
-# On the desktop GPU
 docker exec -it mobisys2025 /bin/bash
 ```
 
@@ -56,7 +53,7 @@ Otherwise, check our [Installation Guide](docs/INSTALL.md).
 # Ssh into Orin
 $ ssh -i mobisys2025.pem agile3d@172.30.53.226
 # Get into the docker env
-$ docker exec -it d94aaeae45f7 /bin/bash
+$ docker exec -it mobisys2025 /bin/bash
 # On Orin 
 $ conda activate agile3d
 (agile3d) $ cd /home/data/agile3d
@@ -86,7 +83,7 @@ On Orin, run the following command:
 # Ssh into Orin
 $ ssh -i mobisys2025.pem agile3d@172.30.53.226
 # Get into the docker env
-$ docker exec -it d94aaeae45f7 /bin/bash
+$ docker exec -it mobisys2025 /bin/bash
 # On Orin
 # The switching overhead will be printed out during the experiment
 $ conda activate agile3d
@@ -102,7 +99,7 @@ The evaluation script will print the switching overhead results.
 # Ssh into Orin
 $ ssh -i mobisys2025.pem agile3d@172.30.53.226
 # Get into the docker env
-$ docker exec -it d94aaeae45f7 /bin/bash
+$ docker exec -it mobisys2025 /bin/bash
 # On Orin
 # This part is not necessary as we already put a copy of results on the server
 $ conda activate agile3d
@@ -117,7 +114,7 @@ $ ssh -i mobisys2025.pem agile3d@172.30.166.233
 # Get into the docker env
 $ docker exec -it mobisys2025 /bin/bash
 # On GPU Server
-$ . activate_agile3d_env.sh
+$ conda activate agile3d
 (agile3d) $ cd /home/data/agile3d
 (agile3d) $ bash eval_experiment_3.sh
 ```
