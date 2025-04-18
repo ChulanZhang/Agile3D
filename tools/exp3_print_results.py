@@ -13,28 +13,28 @@ pareto_branches = [
     'dsvt_sampled_voxel038'
 ]
 
-# Define shorter display names for branches
-branch_display_names = {
-    'centerpoint_without_resnet_dyn_voxel100': 'CenterPoint-voxel100',
-    'dsvt_sampled_pillar066': 'DSVT-pillar066',
-    'dsvt_sampled_pillar048': 'DSVT-pillar048',
-    'dsvt_sampled_voxel058': 'DSVT-voxel058',
-    'dsvt_sampled_voxel048': 'DSVT-voxel048',
-    'dsvt_sampled_voxel040': 'DSVT-voxel040',
-    'dsvt_sampled_voxel038': 'DSVT-voxel038'
-}
-
 baselines = [
     'centerpoint_pillar_1x',
     'centerpoint_without_resnet',
     'second',
     'PartA2',
     'pointpillar_1x',
-    'pv_rcnn'
+    'pv_rcnn',
+    'dsvt_sampled_voxel032',
+    'dsvt_sampled_pillar032',
 ]
 
-# Define shorter display names for baselines
-baseline_display_names = {
+# Define shorter display names for branches
+branch_display_names = {
+    'centerpoint_without_resnet_dyn_voxel100': 'Agile3D-CP-Voxel100',
+    'dsvt_sampled_pillar066': 'Agile3D-DSVT-Pillar066',
+    'dsvt_sampled_pillar048': 'Agile3D-DSVT-Pillar048',
+    'dsvt_sampled_voxel058': 'Agile3D-DSVT-Voxel058',
+    'dsvt_sampled_voxel048': 'Agile3D-DSVT-Voxel048',
+    'dsvt_sampled_voxel040': 'Agile3D-DSVT-Voxel040',
+    'dsvt_sampled_voxel038': 'Agile3D-DSVT-Voxel038',
+    'dsvt_sampled_voxel032': 'DSVT-Voxel',
+    'dsvt_sampled_pillar032': 'DSVT-Pillar',
     'centerpoint_pillar_1x': 'CenterPoint-Pillar',
     'centerpoint_without_resnet': 'CenterPoint-Voxel',
     'second': 'SECOND', 
@@ -42,7 +42,6 @@ baseline_display_names = {
     'pointpillar_1x': 'PointPillar',
     'pv_rcnn': 'PV-RCNN'
 }
-
 
 def load_latency_data(file_path):
     """Load latency data from pickle file"""
@@ -99,7 +98,7 @@ def main():
     # Print header
     print("\nExperiment 3 Results Summary:")
     print("=" * 80)
-    print("{:<20} {:<15} {:<15} {:<15}".format("Model", "Latency (ms)", "L1 AP", "L2 AP"))
+    print("{:<20} {:<15} {:<15} {:<15}".format("Model", "Latency (ms)", "L1 mAP", "L2 mAP"))
     print("-" * 80)
     
     for branch in pareto_branches + baselines:
