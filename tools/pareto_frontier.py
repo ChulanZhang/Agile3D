@@ -27,7 +27,11 @@ agile3d_branches = [['cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel100.
             ['cfgs/waymo_models/dsvt_sampled_voxel038.yaml',
                 '../output/waymo_checkpoints/dsvt_sampled_voxel038.pth']]
 
-baselines = [['cfgs/waymo_models/centerpoint_pillar_1x.yaml',
+baselines = [['cfgs/waymo_models/dsvt_sampled_voxel032.yaml',
+                '../output/waymo_checkpoints/dsvt_sampled_voxel032.pth'],
+            ['cfgs/waymo_models/dsvt_sampled_pillar032.yaml',
+                '../output/waymo_checkpoints/dsvt_sampled_pillar032.pth'],
+            ['cfgs/waymo_models/centerpoint_pillar_1x.yaml',
                 '../output/waymo_baselines/centerpoint_pillar_1x.pth'],
             ['cfgs/waymo_models/centerpoint_without_resnet.yaml',
                 '../output/waymo_baselines/centerpoint_without_resnet.pth'],
@@ -51,7 +55,7 @@ def time_sync():
 def latency_profiling(branches):
     logger = common_utils.create_logger()
     profiling_results = []
-    for i, (config, ckpt) in tqdm(enumerate(branches)):
+    for i, (config, ckpt) in tqdm(enumerate(agile3d_branches + baselines)):
         print(i)
         # Read the config file
         cfg_from_yaml_file(config, cfg)
