@@ -54,28 +54,31 @@ For installation on your own systems, please refer to our installation guides:
 This experiment evaluates Agile3D's accuracy and latency performance on the NVIDIA Jetson Orin under different contention levels.
 
 Expected performance:
-- Contention level 1: 71.72% accuracy, 374 ms latency
-- Contention level 2: 70.98% accuracy, 430 ms latency
-- Contention level 3: 70.03% accuracy, 450 ms latency
-- Contention level 4: 68.72% accuracy, 470 ms latency
+- Contention level 1: 71.72% accuracy, 362 ms latency
+- Contention level 2: 70.98% accuracy, 415 ms latency
+- Contention level 3: 70.03% accuracy, 468 ms latency
+- Contention level 4: 68.72% accuracy, 476 ms latency
 
 #### Running the experiment:
 
 ```bash
 # We've already placed a copy of results on the server for your convenience
-# If you want to run the experiment yourself on Orin:
-conda activate agile3d
-cd /home/data/agile3d
-bash experiment_1.sh
-bash results_sync.sh
+# If you want to run the experiment yourself on the GPU server:
 
-# For evaluation (recommended starting point):
-# SSH into desktop GPU
+# SSH into the GPU server and activate environment
 ssh -i mobisys2025.pem agile3d@172.30.166.233
 docker exec -it mobisys2025 /bin/bash
 conda activate agile3d
 cd /home/data/agile3d
+
+# Run experiment_1
+bash experiment_1.sh
+
+# Evaluate experiment_1 results
 bash eval_experiment_1.sh
+
+# For fast evaluation (recommended starting point)
+bash eval_experiment_1_short.sh
 ```
 
 ### Experiment 2: Switching Overhead
@@ -88,11 +91,13 @@ Expected results: Mean switching overhead < 2 ms
 #### Running the experiment:
 
 ```bash
-# SSH into Orin
+# SSH into Orin and activate environment
 ssh -i mobisys2025.pem agile3d@172.30.53.226
 docker exec -it mobisys2025 /bin/bash
 conda activate agile3d
 cd /home/data/agile3d
+
+# Run experiment_2
 bash experiment_2.sh
 ```
 
@@ -112,18 +117,28 @@ Expected latency:
 ```bash
 # We've already placed a copy of results on the server for your convenience
 # If you want to run the experiment yourself on Orin:
+
+# SSH into Orin and activate environment
+ssh -i mobisys2025.pem agile3d@172.30.53.226
+docker exec -it mobisys2025 /bin/bash
 conda activate agile3d
 cd /home/data/agile3d
-bash experiment_3.sh
-bash results_sync.sh
 
-# For evaluation (recommended starting point):
-# SSH into desktop GPU
+# Run experiment_3
+bash experiment_3.sh
+
+# For evaluation:
+# SSH into GPU server and activate environment
 ssh -i mobisys2025.pem agile3d@172.30.166.233
 docker exec -it mobisys2025 /bin/bash
 conda activate agile3d
 cd /home/data/agile3d
+
+# Evaluate experiment_3 results
 bash eval_experiment_3.sh
+
+# For fast evaluation (recommended starting point)
+bash eval_experiment_3_short.sh
 ```
 
 ## License
