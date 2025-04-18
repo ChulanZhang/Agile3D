@@ -1,5 +1,5 @@
 # Not necessary to run this script, the results are saved in /home/data/agile3d/output/exp3/
-cd tools
+cd /home/data/agile3d/tools
 python eval.py --predictions /home/data/agile3d/output/profiling_results/det/test/centerpoint_without_resnet_dyn_voxel100_det.pkl \
 --config cfgs/waymo_models/centerpoint_without_resnet_dyn_voxel100.yaml --output /home/data/agile3d/output/exp3/centerpoint_without_resnet_dyn_voxel100.txt --start 0
 
@@ -24,6 +24,6 @@ python eval.py --predictions /home/data/agile3d/output/profiling_results/det/tes
 # All the results are saved in /home/data/agile3d/output/exp3/
 # You can comment out the above commands and run the following command to see the final metric
 # Print results
-cd tools
+cd /home/data/agile3d/tools
 python exp3_print_results.py
 
