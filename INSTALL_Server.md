@@ -63,8 +63,8 @@ conda activate agile3d
 ## Install PyTorch and Dependencies
 
 ```bash
-# Install PyTorch 2.1.0 with CUDA 12.1 support
-pip install torch==2.1.0 torchvision==0.16.0 torchaudio==2.1.0 --index-url https://download.pytorch.org/whl/cu121
+# Install PyTorch 2.4.0 with CUDA 12.4 support
+pip install torch==2.4.0 torchvision==0.19.0 torchaudio==2.4.0 --index-url https://download.pytorch.org/whl/cu124
 
 # Install spconv for CUDA 12.0
 pip install spconv-cu120
@@ -91,7 +91,7 @@ pip install gym gymnasium
 # Install causal-conv1d
 git clone https://github.com/Dao-AILab/causal-conv1d.git
 cd causal-conv1d
-git checkout v1.1.0
+git checkout v1.4.0
 pip install .
 cd ..
 
@@ -100,7 +100,3 @@ git clone https://github.com/state-spaces/mamba.git
 cd mamba/
 pip install .
 cd ..
-
-# Install triton
-pip install triton==2.2.0
-```

@@ -160,6 +160,7 @@ pip install gym gymnasium
 # Install causal-conv1d
 git clone https://github.com/Dao-AILab/causal-conv1d.git
 cd causal-conv1d
+git checkout v1.4.0
 pip install .
 cd ..
  
