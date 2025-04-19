@@ -155,10 +155,6 @@ bash eval_experiment_3_short.sh
 
 Agile3D is released under the [CC BY-NC-ND 4.0 license](LICENSE).
 
-## Acknowledgements
-
-[Acknowledgements placeholder]
-
 ## Citation
 
 If you find this project useful in your research, please consider citing:
@@ -166,9 +162,8 @@ If you find this project useful in your research, please consider citing:
 ```bibtex
 @misc{agil3d,
     title={Agile3D: Adaptive Contention- and Content-Aware 3D Object Detection for Embedded GPUs},
-    author={[Author names]},
-    howpublished = {[Publication venue]},
+    author={Wang, Pengcheng and Liu, Zhuoming and Bagchi, Shayok and Xu, Ran and Bagchi, Saurabh and Li, Yin and Chaterji, Somali},
+    howpublished = {The 23rd ACM International Conference on Mobile Systems, Applications, and Services},
     year={2025}
 }
 ```
-
