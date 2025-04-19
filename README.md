@@ -51,7 +51,7 @@ For installation on your own systems, please refer to our installation guides:
 ### Experiment 1: Performance Under Various Contention Levels
 **[40 human-minutes + 4 compute-hours]**
 
-This experiment evaluates Agile3D's accuracy and latency performance on the NVIDIA Jetson Orin under different contention levels.
+This experiment evaluates Agile3D's accuracy and latency performance on the NVIDIA Jetson Orin under different contention levels. The results correspond to the values presented in Fig. 7 [Left] CARL + MEF and Sec. 5.2.
 
 Expected performance:
 - Contention level 1: 71.72% accuracy, 362 ms latency
@@ -88,7 +88,7 @@ bash eval_experiment_1_short.sh
 
 This experiment measures the switching overhead when transitioning between different Agile3D branches.
 
-Expected results: Mean switching overhead < 2 ms
+Expected results: Mean switching overhead < 2 ms. The results correspond to the values presented in Fig. 10 and Sec. 5.7.
 
 #### Running the experiment:
 
@@ -107,12 +107,18 @@ bash experiment_2.sh
 **[60 human-minutes + 10 compute-hours]**
 
 This experiment compares Agile3D against static state-of-the-art models in terms of latency and accuracy.
+The results correspond to the values presented in Fig. 11 and Sec. 5.4.
 
-Expected latency:
-- Agile3D: 100-350 ms
-- PV-RCNN: 850 ms
-- DSVT-Voxel: 460 ms
-- DSVT-Pillar: 350 ms
+Expected latency and accuracy (L2 mAP):
+- Agile3D: 85-360 ms, 63.71-71.73%
+- PV-RCNN: 850 ms, 64.4%
+- DSVT-Voxel: 450 ms, 71.7%
+- DSVT-Pillar: 310 ms, 70.91%
+- PartA2: 390 ms, 64.82%
+- SECOND: 105 ms, 58.62%
+- PointPillar: 130 ms, 59.15%
+- CenterPoint-Voxel: 115 ms, 64.5%
+- CenterPoint-Pillar: 170 ms, 63.12%
 
 #### Running the experiment:
 
