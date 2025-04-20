@@ -49,7 +49,7 @@ For installation on your own systems, please refer to our installation guides:
 ## Experiments
 
 ### Experiment 1: Performance Under Various Contention Levels
-**[40 human-minutes + 4 compute-hours]**
+**[40 human-minutes + 12 compute-hours]**
 
 This experiment evaluates Agile3D's accuracy and latency performance on the NVIDIA Jetson Orin under different contention levels. The results correspond to the values presented in Fig. 7 [Left] CARL + MEF and Sec. 5.2.
 
@@ -84,7 +84,7 @@ bash eval_experiment_1_short.sh
 ```
 
 ### Experiment 2: Switching Overhead
-**[20 human-minutes + 6 compute-hours]**
+**[20 human-minutes + 3 compute-hours]**
 
 This experiment measures the switching overhead when transitioning between different Agile3D branches.
 
@@ -104,7 +104,7 @@ bash experiment_2.sh
 ```
 
 ### Experiment 3: Comparison with Static SOTA Models
-**[60 human-minutes + 10 compute-hours]**
+**[60 human-minutes + 24 compute-hours]**
 
 This experiment compares Agile3D against static state-of-the-art models in terms of latency and accuracy.
 The results correspond to the values presented in Fig. 11 and Sec. 5.4.
