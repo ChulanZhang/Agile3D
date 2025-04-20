@@ -160,19 +160,24 @@ pip install gym gymnasium
 # Install causal-conv1d
 git clone https://github.com/Dao-AILab/causal-conv1d.git
 cd causal-conv1d
-git checkout v1.4.0
-pip install .
+# Force build to ensure proper compilation
+CAUSAL_CONV1D_FORCE_BUILD="TRUE" python setup.py build
+python setup.py install
 cd ..
  
 # Install mamba
 git clone https://github.com/state-spaces/mamba.git
 cd mamba/
-pip install .
 python setup.py install
 cd ..
 
-# Install triton (note version compatibility)
-pip install triton==2.2.0
-# Note: The original triton version is 2.1.0. If you encounter errors with 2.2.0,
-# consider downgrading back to 2.1.0 with: pip install triton==2.1.0
+# Install tensorboard for logging
+pip install tensorboard
+
+# Install triton from source
+git clone https://github.com/triton-lang/triton.git
+cd triton
+pip install -r python/requirements.txt # build-time dependencies
+pip install -e python
+cd ..
 ```
